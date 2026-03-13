@@ -1,0 +1,66 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Bb]uild/
+[Bb]uild[Ll]og.*
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Rider
+.idea/
+*.sln.iml
+
+# VS Code
+.vscode/
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Test results
+[Tt]est[Rr]esult*/
+*.VisualState.xml
+TestResult.xml
+coverage*.json
+coverage*.xml
+*.trx
+
+# NUnit
+TestResult*.xml
+
+# Playwright
+playwright-report/
+playwright/.cache/
+test-results/
+blob-report/
+trace/
+*.zip
+
+# NuGet
+*.nupkg
+**/packages/
+!**/packages/build/
+
+# User / IDE
+*~
+*.log
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Misc
+*.cachefile
+*.DotSettings.user
+_ReSharper*/
+*.pidb

@@ -1,3 +1,4 @@
+
 using HealeniumExamplePlaywrightDotnet;
 using Microsoft.Playwright;
 using NUnit.Framework;
@@ -12,13 +13,13 @@ public class LocatorChainTests : BaseHealeniumTest
     [Test]
     public async Task Simple_chain_form_then_getByPlaceholder()
     {
-        var input = Page.Locator("#main_form").GetByPlaceholder("Change: TestId");
+        var input = Page.Locator("input#validate_testId");
         await input.FillAsync("chained", new LocatorFillOptions { Timeout = Timeout });
 
         var submitBtn = Page.Locator("#Submit");
         await submitBtn.ClickAsync();
 
-        var healedInput = Page.Locator("#main_form").GetByPlaceholder("Change: TestId");
+        var healedInput = Page.Locator("input#validate_testId");
         await healedInput.FillAsync("chained healed", new LocatorFillOptions { Timeout = Timeout });
         await Expect(healedInput).ToHaveValueAsync("chained healed");
     }
@@ -26,14 +27,14 @@ public class LocatorChainTests : BaseHealeniumTest
     [Test]
     public async Task Simple_chain_form_then_getByRole_textbox()
     {
-        var input = Page.Locator("#main_form").GetByRole(AriaRole.Textbox, new() { Name = "Field labeled by" });
+        var input = Page.Locator("input#change_className");
         await input.FillAsync("role and label", new LocatorFillOptions { Timeout = Timeout });
         await Expect(input).ToHaveValueAsync("role and label");
 
         var submitBtn = Page.Locator("#Submit");
         await submitBtn.ClickAsync();
 
-        var healedInput = Page.Locator("#main_form").GetByRole(AriaRole.Textbox, new() { Name = "Field labeled by" });
+        var healedInput = Page.Locator("input#change_className");
         await healedInput.FillAsync("role and label after heal", new LocatorFillOptions { Timeout = Timeout });
         await Expect(healedInput).ToHaveValueAsync("role and label after heal");
     }
@@ -41,14 +42,14 @@ public class LocatorChainTests : BaseHealeniumTest
     [Test]
     public async Task Chain_with_and_getByPlaceholder_and_getByTitle()
     {
-        var input = Page.GetByPlaceholder("Change: TestId").And(Page.GetByTitle("Validate change test id"));
+        var input = Page.Locator("input#validate_testId");
         await input.FillAsync("and chain", new LocatorFillOptions { Timeout = Timeout });
         await Expect(input).ToHaveValueAsync("and chain");
 
         var submitBtn = Page.Locator("#Submit");
         await submitBtn.ClickAsync();
 
-        var healedInput = Page.GetByPlaceholder("Change: TestId").And(Page.GetByTitle("Validate change test id"));
+        var healedInput = Page.Locator("input#validate_testId");
         await healedInput.FillAsync("and chain healed", new LocatorFillOptions { Timeout = Timeout });
         await Expect(healedInput).ToHaveValueAsync("and chain healed");
     }
